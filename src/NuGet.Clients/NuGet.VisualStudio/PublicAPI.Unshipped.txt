@@ -1,0 +1,11 @@
+NuGet.VisualStudio.IVsFrameworkCompatibility3
+NuGet.VisualStudio.IVsFrameworkCompatibility3.GetNearest(string targetFramework, System.Collections.Generic.IEnumerable<string> fallbackTargetFrameworks, System.Collections.Generic.IEnumerable<string> frameworks) -> string
+NuGet.VisualStudio.IVsFrameworkCompatibility3.GetNearest(string targetFramework, System.Collections.Generic.IEnumerable<string> frameworks) -> string
+NuGet.VisualStudio.IVsFrameworkParser2
+NuGet.VisualStudio.IVsFrameworkParser2.TryParse(string input, out NuGet.VisualStudio.IVsNuGetFramework nuGetFramework) -> bool
+NuGet.VisualStudio.IVsNuGetFramework
+NuGet.VisualStudio.IVsNuGetFramework.Profile.get -> string
+NuGet.VisualStudio.IVsNuGetFramework.TargetFrameworkIdentifier.get -> string
+NuGet.VisualStudio.IVsNuGetFramework.TargetFrameworkVersion.get -> System.Version
+NuGet.VisualStudio.IVsNuGetFramework.TargetPlatformIdentifier.get -> string
+NuGet.VisualStudio.IVsNuGetFramework.TargetPlatformVersion.get -> System.Version

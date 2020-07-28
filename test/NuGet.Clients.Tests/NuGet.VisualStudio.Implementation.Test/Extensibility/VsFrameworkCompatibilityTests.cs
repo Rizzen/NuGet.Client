@@ -199,5 +199,70 @@ namespace NuGet.VisualStudio.Implementation.Test.Extensibility
             Assert.Equal(".NETStandard,Version=v2.1", actual[9].ToString());
             Assert.Equal(10, actual.Length);
         }
+
+        [Fact]
+        public void IVsFrameworkCompatibility3_GetNearest_UsingShortFolderName_Succeeds()
+        {
+            // Arrange
+            var target = new VsFrameworkCompatibility();
+
+            var targetFramework = "net5.0";
+            var frameworks = new[] { "net472", "netcoreapp3.1" };
+
+            // Act
+            var actual = target.GetNearest(targetFramework, frameworks);
+
+            // Assert
+            Assert.Equal("netcoreapp3.1", actual);
+        }
+
+        [Fact]
+        public void IVsFrameworkCompatibility3_GetNearest_UsingCanonicalNames_Succeeds()
+        {
+            // Arrange
+            var target = new VsFrameworkCompatibility();
+
+            var targetFramework = ".NETCoreApp,Version=5.0";
+            var frameworks = new[] { ".NETFramework,Version=4.7.2", ".NETCoreApp,Version=3.1" };
+
+            // Act
+            var actual = target.GetNearest(targetFramework, frameworks);
+
+            // Assert
+            Assert.Equal(".NETCoreApp,Version=3.1", actual);
+        }
+
+        [Fact]
+        public void IVsFrameworkCompatibility3_GetNearest_WithFallbackTfm_Succeeds()
+        {
+            // Arrange
+            var target = new VsFrameworkCompatibility();
+
+            var targetFramework = "net5.0";
+            var fallbackFrameworks = new[] { "net472" };
+            var frameworks = new[] { "net472" };
+
+            // Act
+            var actual = target.GetNearest(targetFramework, fallbackFrameworks, frameworks);
+
+            // Assert
+            Assert.Equal("net472", actual);
+        }
+
+        [Fact]
+        public void IVsFrameworkCompatibility3_GetNearest_NoCompatibleFramework_ReturnsNull()
+        {
+            // Arrange
+            var target = new VsFrameworkCompatibility();
+
+            var targetFramework = "net5.0";
+            var frameworks = new[] { "net472" };
+
+            // Act
+            var actual = target.GetNearest(targetFramework, frameworks);
+
+            // Assert
+            Assert.Null(actual);
+        }
     }
 }
