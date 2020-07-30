@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using NuGet.Frameworks;
 using NuGet.LibraryModel;
@@ -14,6 +13,8 @@ namespace NuGet.ProjectModel
 {
     public class TargetFrameworkInformation : IEquatable<TargetFrameworkInformation>
     {
+        public string TargetAlias { get; set; } = string.Empty;
+
         public NuGetFramework FrameworkName { get; set; }
 
         public IList<LibraryDependency> Dependencies { get; set; } = new List<LibraryDependency>();

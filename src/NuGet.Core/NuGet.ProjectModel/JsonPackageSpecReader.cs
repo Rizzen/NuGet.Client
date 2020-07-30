@@ -1571,6 +1571,10 @@ namespace NuGet.ProjectModel
                         targetFrameworkInformation.RuntimeIdentifierGraphPath = jsonReader.ReadNextTokenAsString();
                         break;
 
+                    case "targetAlias":
+                        targetFrameworkInformation.TargetAlias = jsonReader.ReadNextTokenAsString();
+                        break;
+
                     case "warn":
                         targetFrameworkInformation.Warn = ReadNextTokenAsBoolOrFalse(jsonReader, packageSpec.FilePath);
                         break;

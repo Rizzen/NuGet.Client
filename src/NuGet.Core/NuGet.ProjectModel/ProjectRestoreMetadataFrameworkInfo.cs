@@ -12,6 +12,8 @@ namespace NuGet.ProjectModel
 {
     public class ProjectRestoreMetadataFrameworkInfo : IEquatable<ProjectRestoreMetadataFrameworkInfo>
     {
+        public string TargetAlias { get; set; } = string.Empty;
+
         /// <summary>
         /// Target framework
         /// </summary>
