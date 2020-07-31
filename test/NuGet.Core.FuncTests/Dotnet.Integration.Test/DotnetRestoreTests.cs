@@ -878,7 +878,7 @@ EndGlobal";
                 }
 
                 // Act
-                var result = _msbuildFixture.RunDotnet(pathContext.SolutionRoot, $"restore {projectFile1} {$"--source \"{pathContext.PackageSource}\""}", ignoreExitCode: true);
+                var result = _msbuildFixture.RunDotnet(pathContext.SolutionRoot, $"restore {projectFile1} {$"--source \"{pathContext.PackageSource}\" /p:DisableImplicitFrameworkReferences=true"}", ignoreExitCode: true);
 
                 // Assert
                 result.ExitCode.Should().Be(0, because: result.AllOutput);

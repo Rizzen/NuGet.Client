@@ -204,7 +204,7 @@ namespace NuGet.ProjectModel
 
                         writer.WriteObjectStart(frameworkName);
 
-                        writer.WriteNameValue("targetAlias", framework.TargetAlias);
+                        SetValueIfNotNull(writer, "targetAlias", framework.TargetAlias);
 
                         writer.WriteObjectStart("projectReferences");
 
