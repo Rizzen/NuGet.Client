@@ -43,6 +43,7 @@ namespace NuGet.ProjectModel
             var hashCode = new HashCodeCombiner();
 
             hashCode.AddObject(FrameworkName);
+            hashCode.AddObject(TargetAlias);
             hashCode.AddSequence(ProjectReferences);
 
             return hashCode.CombinedHash;
@@ -66,6 +67,7 @@ namespace NuGet.ProjectModel
             }
 
             return EqualityUtility.EqualsWithNullCheck(FrameworkName, other.FrameworkName) &&
+                   EqualityUtility.EqualsWithNullCheck(TargetAlias, other.TargetAlias) &&
                    ProjectReferences.OrderedEquals(other.ProjectReferences, e => e.ProjectPath, PathUtility.GetStringComparerBasedOnOS());
         }
 
@@ -73,6 +75,7 @@ namespace NuGet.ProjectModel
         {
             var clonedObject = new ProjectRestoreMetadataFrameworkInfo();
             clonedObject.FrameworkName = FrameworkName;
+            clonedObject.TargetAlias = TargetAlias;
             clonedObject.ProjectReferences = ProjectReferences?.Select(c => c.Clone()).ToList();
             return clonedObject;
         }

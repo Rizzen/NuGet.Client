@@ -148,6 +148,7 @@ namespace NuGet.Commands
             {
                 throw new ArgumentNullException(nameof(items));
             }
+
             PackageSpec result = null;
 
             // There should only be one ProjectSpec per project in the item set, 
@@ -436,7 +437,6 @@ namespace NuGet.Commands
                 }
                 uniqueIds.Add(targetAlias);
 
-                // This is not ideal and potentially wrong, this needs reexamined. Might be a good idea to do these in isolation to make the change set at the end small.
                 var targetFramework = MSBuildProjectFrameworkUtility.GetProjectFrameworkStrings(
                   projectFilePath: filePath,
                   targetFrameworks: null,

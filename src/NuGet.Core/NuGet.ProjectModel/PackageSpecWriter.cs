@@ -204,6 +204,8 @@ namespace NuGet.ProjectModel
 
                         writer.WriteObjectStart(frameworkName);
 
+                        writer.WriteNameValue("targetAlias", framework.TargetAlias);
+
                         writer.WriteObjectStart("projectReferences");
 
                         foreach (var project in framework.ProjectReferences.OrderBy(e => e.ProjectPath, PathUtility.GetStringComparerBasedOnOS()))

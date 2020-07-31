@@ -72,6 +72,7 @@ namespace NuGet.ProjectModel
             hashCode.AddSequence(FrameworkReferences);
             hashCode.AddObject(RuntimeIdentifierGraphPath);
             hashCode.AddSequence(CentralPackageVersions);
+            hashCode.AddSequence(TargetAlias);
             return hashCode.CombinedHash;
         }
 
@@ -99,7 +100,8 @@ namespace NuGet.ProjectModel
                    DownloadDependencies.OrderedEquals(other.DownloadDependencies, dep => dep) &&
                    FrameworkReferences.OrderedEquals(other.FrameworkReferences, fr => fr) &&
                    CentralPackageVersions.Values.SequenceEqualWithNullCheck(other.CentralPackageVersions.Values) &&
-                   string.Equals(RuntimeIdentifierGraphPath, other.RuntimeIdentifierGraphPath);
+                   EqualityUtility.EqualsWithNullCheck(RuntimeIdentifierGraphPath, other.RuntimeIdentifierGraphPath) &&
+                   EqualityUtility.EqualsWithNullCheck(TargetAlias, other.TargetAlias);
         }
 
         public TargetFrameworkInformation Clone()
@@ -114,6 +116,7 @@ namespace NuGet.ProjectModel
             clonedObject.FrameworkReferences.AddRange(FrameworkReferences);
             clonedObject.RuntimeIdentifierGraphPath = RuntimeIdentifierGraphPath;
             clonedObject.CentralPackageVersions.AddRange(CentralPackageVersions.ToDictionary(item => item.Key, item => item.Value));
+            clonedObject.TargetAlias = TargetAlias;
             return clonedObject;
         }
     }

@@ -1449,9 +1449,9 @@ namespace NuGet.ProjectModel
                 NuGetFramework framework = NuGetFramework.Parse(frameworkPropertyName);
                 var frameworkGroup = new ProjectRestoreMetadataFrameworkInfo(framework);
 
-                jsonReader.ReadObject(projectReferencesPropertyName =>
+                jsonReader.ReadObject(propertyName =>
                 {
-                    if (projectReferencesPropertyName == "projectReferences")
+                    if (propertyName == "projectReferences")
                     {
                         jsonReader.ReadObject(projectReferencePropertyName =>
                         {
@@ -1500,6 +1500,10 @@ namespace NuGet.ProjectModel
                                     defaultFlags: LibraryIncludeFlagUtils.DefaultSuppressParent),
                             });
                         });
+                    }
+                    else if(propertyName == "targetAlias")
+                    {
+                        frameworkGroup.TargetAlias = jsonReader.ReadNextTokenAsString();
                     }
                 });
 
